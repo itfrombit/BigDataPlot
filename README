@@ -1,0 +1,33 @@
+Description
+-----------
+
+This example demonstrates one way of plotting a large amount of 
+time-series data using smart data sampling and Core Plot.
+
+The file being plotted is one channel of an uncompressed audio file in
+WAV format.  The file was recorded at a standard 44.1KHz rate and is a 
+little over 18 seconds long.  It has 806,400 samples.
+
+Trying to plot all 806,400 samples using Core Plot takes several seconds
+on OS X and also consumes a large amount of memory.  In all fairness, Core
+Plot does a pretty good job given how much work it is being asked to do.
+
+However, it is unnecessary effort since you would need over 300 
+30" Cinema Displays lined up left to right in order to discern every 
+data point.
+
+This example application uses min/max sampling of the data set to generate
+a fairly accurate representation of the data while keeping memory and 
+CPU usage in check.  
+
+The application queries the plot hosting view's width and samples the data 
+set accordingly.  When the window is resized, the data set is resampled
+and the plot is redrawn.  When you zoom in far enough so that the ratio
+of viewable_samples to plot_view_width drops below 2, sampling is turned
+off and the raw data points are fed to Core Plot.
+
+
+Author
+------
+Jeff Buck.
+
