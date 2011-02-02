@@ -27,6 +27,12 @@ of viewable_samples to plot_view_width drops below 2, sampling is turned
 off and the raw data points are fed to Core Plot.
 
 
+Acknowledgements
+----------------
+This post about using the ExtAudioFile API on CocoaDev was very helpful:
+http://www.cocoadev.com/index.pl?ExtAudioFile
+
+
 Author
 ------
 Jeff Buck.
