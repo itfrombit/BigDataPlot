@@ -13,7 +13,7 @@
 
 @implementation BigDataController
 
-- (void)updatePlotSpaceForGraph:(CPXYGraph*)graph
+- (void)updatePlotSpaceForGraph:(CPTXYGraph*)graph
 {
 	int newSize = _hostingView.bounds.size.width * 2;
 	
@@ -28,29 +28,29 @@
 	[_model resampleDataWithSampleCount:_hostingView.bounds.size.width * 2];
 
 	// Axes
-	CPXYAxisSet* axisSet = (CPXYAxisSet*)graph.axisSet;
-	CPXYAxis* x = axisSet.xAxis;
-	x.majorIntervalLength = CPDecimalFromDouble(0.0);
-	x.orthogonalCoordinateDecimal = CPDecimalFromDouble(0.0);
+	CPTXYAxisSet* axisSet = (CPTXYAxisSet*)graph.axisSet;
+	CPTXYAxis* x = axisSet.xAxis;
+	x.majorIntervalLength = CPTDecimalFromDouble(0.0);
+	x.orthogonalCoordinateDecimal = CPTDecimalFromDouble(0.0);
 	x.minorTicksPerInterval = 0;
-	CPPlotRange* xAxisRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(0.0) length:CPDecimalFromFloat([_model effectiveCount])];
+	CPTPlotRange* xAxisRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0) length:CPTDecimalFromFloat([_model effectiveCount])];
 	x.visibleRange = xAxisRange;
 	x.gridLinesRange = xAxisRange;
 	
-	CPXYAxis* y = axisSet.yAxis;
-	y.majorIntervalLength = CPDecimalFromDouble(0.5);
-	y.orthogonalCoordinateDecimal = CPDecimalFromDouble(0.0);
+	CPTXYAxis* y = axisSet.yAxis;
+	y.majorIntervalLength = CPTDecimalFromDouble(0.5);
+	y.orthogonalCoordinateDecimal = CPTDecimalFromDouble(0.0);
 	y.minorTicksPerInterval = 4;
-	CPPlotRange* yAxisRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(-1.0) length:CPDecimalFromFloat(2.0)];
+	CPTPlotRange* yAxisRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(-1.0) length:CPTDecimalFromFloat(2.0)];
 	y.visibleRange = yAxisRange;
 	y.gridLinesRange = yAxisRange;
 	
 	//graph.axisSet.axes = [NSArray arrayWithObjects:x, y, nil];
 	
-	CPXYPlotSpace* plotSpace = (id)graph.defaultPlotSpace;
+	CPTXYPlotSpace* plotSpace = (id)graph.defaultPlotSpace;
 	plotSpace.allowsUserInteraction = NO;
-	plotSpace.xRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(0.0) length:CPDecimalFromFloat([_model effectiveCount])];
-	plotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(-1.0) length:CPDecimalFromFloat(2.0)];
+	plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0) length:CPTDecimalFromFloat([_model effectiveCount])];
+	plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(-1.0) length:CPTDecimalFromFloat(2.0)];
 	
 	[graph reloadData];
 	[graph setNeedsLayout];
@@ -59,20 +59,20 @@
 
 - (void)setupGraph
 {
-	_graph = [(CPXYGraph *)[CPXYGraph alloc] initWithFrame:NSRectToCGRect(_hostingView.bounds)];
-	CPTheme *theme = [CPTheme themeNamed:kCPSlateTheme];
+	_graph = [(CPTXYGraph *)[CPTXYGraph alloc] initWithFrame:NSRectToCGRect(_hostingView.bounds)];
+	CPTTheme *theme = [CPTTheme themeNamed:kCPTSlateTheme];
     [_graph applyTheme:theme];
 	_hostingView.hostedLayer = _graph;
     
     // Graph title
     _graph.title = _filename;
-    CPMutableTextStyle *textStyle = [CPMutableTextStyle textStyle];
-    textStyle.color = [CPColor grayColor];
+    CPTMutableTextStyle *textStyle = [CPTMutableTextStyle textStyle];
+    textStyle.color = [CPTColor grayColor];
     textStyle.fontName = @"Helvetica-Bold";
     textStyle.fontSize = 18.0;
     _graph.titleTextStyle = textStyle;
     _graph.titleDisplacement = CGPointMake(0.0, 20.0);
-    _graph.titlePlotAreaFrameAnchor = CPRectAnchorTop;
+    _graph.titlePlotAreaFrameAnchor = CPTRectAnchorTop;
 	
     // Graph padding
     _graph.paddingLeft = 20.0;
@@ -81,34 +81,34 @@
     _graph.paddingBottom = 20.0;
 	
 	// Axes
-	CPXYAxisSet* axisSet = (CPXYAxisSet*)_graph.axisSet;
-	CPXYAxis* x = axisSet.xAxis;
-	x.majorIntervalLength = CPDecimalFromDouble(0.0);
-	x.orthogonalCoordinateDecimal = CPDecimalFromDouble(0.0);
+	CPTXYAxisSet* axisSet = (CPTXYAxisSet*)_graph.axisSet;
+	CPTXYAxis* x = axisSet.xAxis;
+	x.majorIntervalLength = CPTDecimalFromDouble(0.0);
+	x.orthogonalCoordinateDecimal = CPTDecimalFromDouble(0.0);
 	x.minorTicksPerInterval = 0;
-	CPPlotRange* xAxisRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(0.0) length:CPDecimalFromFloat([_model effectiveCount])];
+	CPTPlotRange* xAxisRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0) length:CPTDecimalFromFloat([_model effectiveCount])];
 	x.visibleRange = xAxisRange;
 	x.gridLinesRange = xAxisRange;
 	
-	CPXYAxis* y = axisSet.yAxis;
-	y.majorIntervalLength = CPDecimalFromDouble(0.5);
-	y.orthogonalCoordinateDecimal = CPDecimalFromDouble(0.0);
+	CPTXYAxis* y = axisSet.yAxis;
+	y.majorIntervalLength = CPTDecimalFromDouble(0.5);
+	y.orthogonalCoordinateDecimal = CPTDecimalFromDouble(0.0);
 	y.minorTicksPerInterval = 4;
-	CPPlotRange* yAxisRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(-1.0) length:CPDecimalFromFloat(2.0)];
+	CPTPlotRange* yAxisRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(-1.0) length:CPTDecimalFromFloat(2.0)];
 	y.visibleRange = yAxisRange;
 	y.gridLinesRange = yAxisRange;
 	
 	_graph.axisSet.axes = [NSArray arrayWithObjects:x, y, nil];
 	
 	// Scatter plot
-	CPScatterPlot* plot = [[[CPScatterPlot alloc] init] autorelease];
+	CPTScatterPlot* plot = [[[CPTScatterPlot alloc] init] autorelease];
 	plot.dataSource = self;
 	plot.delegate = self;
 	
-	CPXYPlotSpace* plotSpace = (id)_graph.defaultPlotSpace;
+	CPTXYPlotSpace* plotSpace = (id)_graph.defaultPlotSpace;
 	plotSpace.allowsUserInteraction = NO;
-	plotSpace.xRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(0.0) length:CPDecimalFromFloat([_model effectiveCount])];
-	plotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(-1.0) length:CPDecimalFromFloat(2.0)];
+	plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0) length:CPTDecimalFromFloat([_model effectiveCount])];
+	plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(-1.0) length:CPTDecimalFromFloat(2.0)];
 	
 	[_graph addPlot:plot];
 }
@@ -130,7 +130,7 @@
 #pragma mark -
 #pragma mark Plot Data Source Methods
 
--(NSUInteger)numberOfRecordsForPlot:(CPPlot *)plot
+-(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot
 {
 	int count = [_model effectiveCount];
 	
@@ -139,11 +139,11 @@
 	return count;
 }
 
--(NSNumber*)numberForPlot:(CPPlot*)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index
+-(NSNumber*)numberForPlot:(CPTPlot*)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index
 {
     NSNumber* num;
 	
-    if (fieldEnum == CPScatterPlotFieldX)
+    if (fieldEnum == CPTScatterPlotFieldX)
 	{
 		if ([_model isSampling])
 		{
@@ -159,7 +159,7 @@
 		}
 		num = [NSNumber numberWithFloat:(float)index];
 	}			
-    else if (fieldEnum == CPScatterPlotFieldY)
+    else if (fieldEnum == CPTScatterPlotFieldY)
 	{
 		if ([_model isSampling])
 		{

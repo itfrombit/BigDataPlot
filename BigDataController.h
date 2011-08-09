@@ -9,14 +9,14 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface BigDataController : NSObject <CPPlotDataSource, NSWindowDelegate>
+@interface BigDataController : NSObject <CPTPlotDataSource, NSWindowDelegate>
 {
-	IBOutlet CPLayerHostingView*	_hostingView;
+	IBOutlet CPTLayerHostingView*	_hostingView;
 	float							_previousWidth;
 
 	NSString*						_filename;
 	
-	CPXYGraph*						_graph;
+	CPTXYGraph*						_graph;
 	BigDataModel*					_model;
 }
 
