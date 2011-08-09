@@ -26,6 +26,13 @@ and the plot is redrawn.  When you zoom in far enough so that the ratio
 of viewable_samples to plot_view_width drops below 2, sampling is turned
 off and the raw data points are fed to Core Plot.
 
+Installation
+------------
+This example will compile as-is if you put it in the examples directory
+of your core-plot distribution.
+
+Otherwise, adjust the Build Settings to point to the correct location
+of the Core Plot framework.
 
 Acknowledgements
 ----------------
@@ -35,5 +42,5 @@ http://www.cocoadev.com/index.pl?ExtAudioFile
 
 Author
 ------
-Jeff Buck.
+Jeff Buck
 
